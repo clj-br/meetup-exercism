@@ -1,0 +1,16 @@
+(defn hello
+  ([] (str "Hello, World!")
+  ([name] (format "Hello, %s!" name))))
+(hello)
+(hello "bar")
+(defn hello
+  ([] (str "Hello, World!"))
+  ([name] (format "Hello, %s!" name)))
+(hello "bar")
+(hello)
+(defn hello
+  ([] (hello "World"))
+  ([name] (format "Hello, %s!" name)))
+(hello)
+(hello "bar")
+exit
