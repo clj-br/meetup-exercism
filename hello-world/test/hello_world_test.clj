@@ -10,3 +10,6 @@
 
 (deftest hello-bob-test
   (is (= "Hello, Bob!" (hello-world/hello "Bob"))))
+
+(deftest hello-with-lastname
+  (is (= "Hello, John Doe!" (hello-world/hello "John" "Doe"))))
