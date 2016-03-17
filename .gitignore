@@ -17,3 +17,5 @@ pom.xml.asc
 *.log
 /.env
 *.iml
+.idea
+
