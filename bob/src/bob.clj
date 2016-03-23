@@ -1,22 +1,23 @@
 (ns bob
   (:require [clojure.string :as str]))
 
-(defn question? [word]
-  (str/ends-with? word "?"))
+(defn shout? [sentence]
+  (and
+    (= (str/upper-case sentence) sentence)
+    (re-find #"[A-Z]" sentence)))
 
-(defn shout? [word]
-  (= (str/upper-case word) word))
+(defn question? [sentence]
+  (and
+    (str/ends-with? sentence "?")
+    (not (shout? sentence))))
 
-(defn point-end? [word]
-  (str/ends-with? word "."))
+(defn silence? [sentence]
+  (str/blank? sentence))
 
-(defn text-empty? [word]
-  (str/blank? word))
-
-(defn response-for [phrase]
+(defn response-for [sentence]
   (cond
-    (text-empty? phrase) "Fine. Be that way!"
-    (point-end? phrase) "Whatever."
-    (shout? phrase) "Whoa, chill out!"
-    (question? phrase)  "Sure."))
+    (question? sentence)  "Sure."
+    (shout? sentence) "Whoa, chill out!"
+    (silence? sentence) "Fine. Be that way!"
+    :else "Whatever."))
 
