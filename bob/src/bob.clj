@@ -7,11 +7,16 @@
 (defn shout? [word]
   (= (str/upper-case word) word))
 
-(defn empty? [word]
+(defn point-end? [word]
+  (str/ends-with? word "."))
+
+(defn text-empty? [word]
   (str/blank? word))
 
 (defn response-for [phrase]
   (cond
-    (empty? phrase) "Fine. Be that way!"
+    (text-empty? phrase) "Fine. Be that way!"
+    (point-end? phrase) "Whatever."
     (shout? phrase) "Whoa, chill out!"
-    (question? phrase) "Sure."))
+    (question? phrase)  "Sure."))
+
