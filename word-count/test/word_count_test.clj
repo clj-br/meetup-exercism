@@ -18,6 +18,10 @@
   (is (= {"car" 1, "carpet" 1 "as" 1 "java" 1 "javascript" 1}
          (word-count/word-count "car : carpet as java : javascript!!&@$%^&"))))
 
+(deftest ignore-space
+  (is (= {"foo" 2, "bar" 2}
+         (word-count/word-count "foo bar      bar   foo"))))
+
 (deftest include-numbers
   (is (= {"testing" 2 "1" 1 "2" 1}
          (word-count/word-count "testing, 1, 2 testing"))))
