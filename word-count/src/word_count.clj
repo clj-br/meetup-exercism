@@ -1,13 +1,11 @@
-(ns word-count)
+(ns word-count
+  (:require [clojure.string :as string]))
 
 (defn split-phrase [phrase]
-  (clojure.string/split (clojure.string/lower-case phrase) #" "))
+  (string/split (string/lower-case (string/replace phrase #"[^A-Za-z0-9 ]" "")) #" "))
 
 (defn word-count [phrase]
  (reduce (fn [result word]
            (update-in result [word] (fnil inc 0)))
-   {}
+         {}
          (split-phrase phrase)))
-
-
-
