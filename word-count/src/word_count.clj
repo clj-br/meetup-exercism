@@ -1,12 +1,17 @@
 (ns word-count
   (:require [clojure.string :as string]))
 
+(defn remove-blank [collection]
+  (remove string/blank? collection))
+
 (defn split-phrase [phrase]
-  (string/split (string/lower-case (string/replace phrase #"[^A-Za-z0-9 ]" "")) #" +"))
+  (-> phrase
+      (string/replace #"[^A-Za-z0-9 ]" "")
+      (string/lower-case)
+      (string/split #" ")))
 
 (defn word-count [phrase]
- (reduce (fn [result word]
-           (update-in result [word] (fnil inc 0)))
-         {}
-         (split-phrase phrase)))
-
+  (-> phrase
+      split-phrase
+      remove-blank
+      frequencies))

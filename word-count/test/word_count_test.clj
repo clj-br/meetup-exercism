@@ -22,6 +22,10 @@
   (is (= {"foo" 2, "bar" 2}
          (word-count/word-count "foo bar      bar   foo"))))
 
+(deftest empty-var
+  (is (= {}
+         (word-count/word-count ""))))
+
 (deftest include-numbers
   (is (= {"testing" 2 "1" 1 "2" 1}
          (word-count/word-count "testing, 1, 2 testing"))))
