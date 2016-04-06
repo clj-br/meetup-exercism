@@ -1,11 +1,12 @@
 (ns anagram
   (:require [clojure.string :as string]))
 
-(defn- -sort [word]
-  (-> word .toLowerCase sort string/join))
+(defn- normalize [word]
+  (-> word string/lower-case sort string/join))
+
+(defn anagram? [possibility word]
+  (and (not= (string/lower-case word) possibility)
+       (= (normalize word) (normalize possibility))))
 
 (defn anagrams-for [word possibilities]
-  (let [anagram (-sort word)]
-    (filter (fn [poss]
-              (and (not= (.toLowerCase word) poss)
-                   (= anagram (-sort poss)))) possibilities)))
+    (filter #(anagram? % word) possibilities))
