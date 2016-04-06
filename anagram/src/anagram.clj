@@ -1,10 +1,11 @@
-(ns anagram)
+(ns anagram
+  (:require [clojure.string :as string]))
+
+
 
 (defn anagrams-for [word possibilities]
-  (let [anagram (clojure.string/reverse word)]
-    (filter
-      (fn [w]
-        (= anagram w))
-      possibilities)))
+  (let [anagram (string/join (sort word))
+        ordered-possibilities (map #(string/join (sort %)) possibilities)]
+    (filter (fn [w] (= anagram w)) ordered-possibilities)))
 
 
