@@ -7,8 +7,5 @@
 (defn anagrams-for [word possibilities]
   (let [anagram (-sort word)]
     (filter (fn [poss]
-              (println anagram poss (-sort poss))
-              (and (not= word poss)
+              (and (not= (.toLowerCase word) poss)
                    (= anagram (-sort poss)))) possibilities)))
-
-
