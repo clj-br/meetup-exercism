@@ -1,4 +1,5 @@
-(ns beer-song)
+(ns beer-song
+  (:require [clojure.string :refer [lower-case]]))
 
 (defn bottles [n]
   (cond
@@ -14,7 +15,11 @@
     :else "Go to the store and buy some more, 99 bottles of beer on the wall.\n"))
 
 (defn verse [n]
-  (str (bottles n) " of beer on the wall, " (bottles n) " of beer.\n"
+  (str (bottles n) " of beer on the wall, " (lower-case (bottles n)) " of beer.\n"
        (second-phrase (dec n))))
 
-(defn sing [n])
+(defn sing
+  ([start] (sing start 0))
+  ([start end]
+   (->> (range start (dec end) -1)
+        (map verse))))
