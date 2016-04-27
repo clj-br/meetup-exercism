@@ -11,11 +11,17 @@
 (deftest valid-when-11-digits-and-first-is-1
   (is (= "9876543210" (phone-number/number "19876543210"))))
 
+(deftest invalid-when-12-digits
+  (is (= "0000000000" (phone-number/number "123456789012"))))
+
 (deftest invalid-when-11-digits
   (is (= "0000000000" (phone-number/number "21234567890"))))
 
 (deftest invalid-when-9-digits
   (is (= "0000000000" (phone-number/number "123456789"))))
+
+(deftest invalid-when-8-digits
+  (is (= "0000000000" (phone-number/number "12345678"))))
 
 (deftest area-code
   (is (= "123" (phone-number/area-code "1234567890"))))
