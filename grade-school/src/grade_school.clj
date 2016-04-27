@@ -1,7 +1,7 @@
 (ns grade-school)
 
 (defn add [db name grade]
-  (assoc db grade (conj (db grade []) name)))
+  (update db grade (fnil conj []) name))
 
 (defn grade [db grade]
   (db grade []))
