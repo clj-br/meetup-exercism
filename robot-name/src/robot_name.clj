@@ -1,15 +1,18 @@
 (ns robot-name)
 
-(def alphabet "ABCDEFGHIJKLMNOPQRSQTUWZYZ")
+(def alphabet "ABCDEFGHIJKLMNOPQRSQTUVWXYZ")
+
+(defn generate-name []
+  (format "%c%c%03d"
+          (rand-nth alphabet)
+          (rand-nth alphabet)
+          (rand-int 1000)))
 
 (defn robot []
-  (atom (format "%c%c%03d"
-                (rand-nth alphabet)
-                (rand-nth alphabet)
-                (rand-int 1000))))
+  (atom (generate-name)))
 
 (defn robot-name [r]
   @r)
 
 (defn reset-name [r]
-  (reset! r (robot-name (robot))))
+  (reset! r (generate-name)))
