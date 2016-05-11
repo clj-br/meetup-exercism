@@ -40,3 +40,11 @@
 (deftest throws-exception-when-element-not-found
   (is (thrown-with-msg? Throwable #"not found"
         (binary-search/search-for 20 short-vector))))
+
+(deftest throws-exception-when-element-not-found-empty-array
+  (is (thrown-with-msg? Throwable #"not found"
+                        (binary-search/search-for 20 []))))
+
+(deftest throws-exception-when-element-not-found-empty-array-one-element-array
+  (is (thrown-with-msg? Throwable #"not found"
+                        (binary-search/search-for 20 [666]))))
