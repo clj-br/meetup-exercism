@@ -1,10 +1,11 @@
-(ns etl)
-
-(reduce-kv
-  (fn [state score words]
-    (reduce
-      (fn [state word] state word) state words)) {} {1 ["a" "b"]})
+(ns etl
+  (:require [clojure.string :as str]))
 
 (defn transform [score->words]
-  {(.toLowerCase (first (first (vals score->words))))
-   (first (keys score->words))})
+  (reduce-kv
+    (fn [state score words]
+      (reduce
+        (fn [state word]
+          (assoc state (str/lower-case word) score)) state words))
+    {}
+    score->words))
