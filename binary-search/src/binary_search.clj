@@ -12,5 +12,5 @@
     (let [middle (middle coll)
           found (coll middle)]
       (cond (= found target) (+ position middle)
-            (> found target) (search-for target (subvec coll 0 middle) position)
-            (< found target) (search-for target (subvec coll (inc middle)) (+ position middle 1))))))
+            (> found target) (recur target (subvec coll 0 middle) position)
+            (< found target) (recur target (subvec coll (inc middle)) (+ position middle 1))))))
