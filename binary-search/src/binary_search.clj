@@ -4,8 +4,7 @@
   (quot (count coll) 2))
 
 (defn- search-for-pos [target coll position]
-  (when (empty? coll)
-    (throw (ex-info "element not found" {:coll coll :target target})))
+  (assert (not-empty coll) "element not found")
 
   (let [middle (middle coll)
         found (coll middle)]
