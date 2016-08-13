@@ -13,15 +13,20 @@
     (doto calendar
       (.set Calendar/YEAR year)
       (.set Calendar/MONTH month)
-      (.set Calendar/DAY_OF_WEEK (day-of-week week-day)))
+      (.set Calendar/DAY_OF_MONTH 11)
+      #_(.set Calendar/DAY_OF_WEEK (day-of-week week-day)))
     [(.get calendar Calendar/YEAR)
      (.get calendar Calendar/MONTH)
-     (.get calendar Calendar/DAY_OF_MONTH)]))
+     (.get calendar Calendar/DAY_OF_MONTH)
+     (.get calendar Calendar/DAY_OF_WEEK)]))
 
 (comment
-  (meetup 2 2013 :friday :first)
+
+  (meetup 8 2016 :thursday :first)
 
   (doto (GregorianCalendar.)
     (.set Calendar/YEAR 2013)
     (.set Calendar/MONTH 10)
-    (.set Calendar/DAY_OF_WEEK Calendar/MONDAY)))
+    (.set Calendar/DAY_OF_WEEK Calendar/MONDAY))
+
+  )
