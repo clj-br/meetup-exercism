@@ -1,9 +1,9 @@
 (ns meetup-test
-  (:require [clojure.test :refer [deftest is]]
-            meetup))
+ (:require [clojure.test :refer [deftest is]]
+           meetup))
 
 (deftest monteenth-of-may-2013
-  (is (= [2013 5 13] (meetup/meetup 5 2013 :monday :teenth))))
+ (is (= [2013 5 13] (meetup/meetup 5 2013 :monday :teenth))))
 
 (deftest monteenth-of-august-2013
   (is (= [2013 8 19] (meetup/meetup 8 2013 :monday :teenth))))
